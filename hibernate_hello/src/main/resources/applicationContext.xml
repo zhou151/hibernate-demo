@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<context:annotation-config />
+	
+	<!-- 1、引用数据库配置文件。 -->
+	<context:property-placeholder
+		location="classpath:/druid.properties" />
+	<!-- 3、配置数据源。 -->
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- 3.1 配置基本数据连接信息 -->
+		<property name="driverClassName"
+			value="${druid.driverClassName}" />
+		<property name="url" value="${druid.url}" />
+		<property name="username" value="${druid.username}" />
+		<property name="password" value="${druid.password}" />
+		<!-- 3.2 配置连接池信息 -->
+		<property name="initialSize" value="${druid.initialSize}" />
+	</bean>
+
+	<!-- hibernate5配置 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		lazy-init="false">
+		<property name="dataSource" ref="dataSource" />
+		<!-- //加载实体类的映射文件位置及名称 -->
+		<property name="mappingLocations"
+			value="classpath*:com/zhou/dao/mapper/*.hbm.xml" />
+		<property name="hibernateProperties">
+			<props>
+				<!-- MySQL的方言 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+				<!-- 必要时在数据库新建所有表格 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- 配置current session的上下文环境，方便我们调用sessionFactory获取当前线程统一个session对象 -->
+				<prop key="current_session_context_class">thread</prop>
+				<!-- 用更漂亮的格式显示sql语句 -->
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
+			</props>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 开启事务注解 -->
+    <tx:annotation-driven transaction-manager="transactionManager"  />
+	
+	<context:component-scan
+		base-package="com.zhou.**" >
+		<!-- Spring扫包一定要排除掉controller,让spring mvc扫描controller -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+</beans>
