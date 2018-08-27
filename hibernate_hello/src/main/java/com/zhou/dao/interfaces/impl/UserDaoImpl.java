@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zhou.dao.entity.User;
 import com.zhou.dao.interfaces.UserDao;
+import com.zhou.service.Page;
 
 
 @Repository
@@ -27,9 +28,11 @@ public class UserDaoImpl implements UserDao
     }
 	
     
-   
+
+
+
 	@Override
-	public List<User> getUser(int offset, int length)
+	public List<User> getUser(Page e)
 	{
 		List<User> userList = new ArrayList<User>();
 	    String hsql="from User";
@@ -37,11 +40,12 @@ public class UserDaoImpl implements UserDao
 	    Query query = session.createQuery(hsql);
 	    
 	    //分页设置
-	    query.setFirstResult(offset);
-        query.setMaxResults(length);
+	    query.setFirstResult(e.getPagesize());
+        query.setMaxResults(e.getStartrow());
         
         //
 	    userList = query.list();
+	    session.close();
 	    return userList;
 	}
 

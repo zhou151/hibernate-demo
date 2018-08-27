@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhou.dao.entity.User;
+import com.zhou.service.Page;
 import com.zhou.service.UserServiceIml;
 
 @Controller
@@ -18,8 +19,10 @@ public class UserController
 	
 	@ResponseBody
 	@RequestMapping(value="/index")
-	public  List<User> mvc10(int offset, int length)
+	public  List<User> mvc10(int page, int pageSize)
 	{
-		return userServiceIml.getUser(offset, length);
+		
+		Page page01 = new Page(page,1,pageSize);
+		return userServiceIml.getUser(page01);
 	}
 }
