@@ -1,3 +1,3 @@
 # hibernate_hello 
 
-spring + hibernate 
+Maven + spring + hibernate  + spring-mvc +json + druid  + log4j2
