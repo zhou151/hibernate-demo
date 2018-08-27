@@ -14,14 +14,12 @@ public class UserServiceIml implements UserDao
 	@Autowired
     private UserDao userDao;
 
-	
+
 
 
 	@Override
-	public List<User> getUser(Page e)
+	public NewsPage queryForNewsPage(Integer currentPage, Integer pageSize)
 	{
-		return userDao.getUser(e);
+		return userDao.queryForNewsPage(currentPage, pageSize);
 	}
-	
-
 }

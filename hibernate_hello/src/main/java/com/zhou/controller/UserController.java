@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhou.dao.entity.User;
-import com.zhou.service.Page;
+import com.zhou.service.NewsPage;
 import com.zhou.service.UserServiceIml;
 
 @Controller
@@ -19,10 +20,9 @@ public class UserController
 	
 	@ResponseBody
 	@RequestMapping(value="/index")
-	public  List<User> mvc10(int page, int pageSize)
+	public  List<User> mvc10(@RequestParam("page") String page)
 	{
-		
-		Page page01 = new Page(page,1,pageSize);
-		return userServiceIml.getUser(page01);
+		NewsPage<User> page01 = userServiceIml.queryForNewsPage(Integer.valueOf(page), 5);
+		return page01.getList();
 	}
 }
