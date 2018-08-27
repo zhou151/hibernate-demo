@@ -29,12 +29,18 @@ public class UserDaoImpl implements UserDao
     
    
 	@Override
-	public List<User> getUser()
+	public List<User> getUser(int offset, int length)
 	{
 		List<User> userList = new ArrayList<User>();
 	    String hsql="from User";
 	    Session session = getSession();
 	    Query query = session.createQuery(hsql);
+	    
+	    //分页设置
+	    query.setFirstResult(offset);
+        query.setMaxResults(length);
+        
+        //
 	    userList = query.list();
 	    return userList;
 	}

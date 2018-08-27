@@ -6,6 +6,6 @@ import com.zhou.dao.entity.User;
 
 public interface UserDao
 {
-	public List<User> getUser();
+	public List<User> getUser(int offset, int length);
 
 }

@@ -16,9 +16,10 @@ public class UserServiceIml implements UserDao
 
 	
 	@Override
-	public List<User> getUser()
+	public List<User> getUser(int offset, int length)
 	{
-		return userDao.getUser();
+		return userDao.getUser(offset,length);
 	}
+	
 
 }

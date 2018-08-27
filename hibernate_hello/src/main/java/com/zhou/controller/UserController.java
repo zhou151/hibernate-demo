@@ -18,8 +18,8 @@ public class UserController
 	
 	@ResponseBody
 	@RequestMapping(value="/index")
-	public  List<User> mvc10()
+	public  List<User> mvc10(int offset, int length)
 	{
-		return userServiceIml.getUser();
+		return userServiceIml.getUser(offset, length);
 	}
 }
