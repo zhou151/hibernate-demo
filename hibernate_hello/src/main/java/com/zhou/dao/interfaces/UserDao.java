@@ -3,11 +3,11 @@ package com.zhou.dao.interfaces;
 import java.util.List;
 
 import com.zhou.dao.entity.User;
-import com.zhou.service.NewsPage;
+import com.zhou.service.inter.NewsPageInter;
 
 public interface UserDao
 {
 	
-	public NewsPage queryForNewsPage(Integer currentPage,Integer pageSize);
+	public NewsPageInter queryForNewsPage(Integer currentPage,Integer pageSize);
 
 }

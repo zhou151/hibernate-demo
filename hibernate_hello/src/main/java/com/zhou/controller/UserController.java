@@ -1,7 +1,5 @@
 package com.zhou.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhou.dao.entity.User;
-import com.zhou.service.NewsPage;
 import com.zhou.service.UserServiceIml;
+import com.zhou.service.inter.NewsPageInter;
 
 @Controller
 public class UserController
@@ -30,9 +28,9 @@ public class UserController
 	 * @return  
 	 * TODO queryForNewsPage参数2为每页显示多少数据
 	 */
-	public  NewsPage<User> mvc10(@RequestParam("page") String page)
+	public  NewsPageInter<User> mvc10(@RequestParam("page") String page)
 	{
-		NewsPage<User> page01 = null;
+		NewsPageInter<User> page01 = null;
 		int pageSize=3;
 		if(page==null||page.equals(""))
 		{

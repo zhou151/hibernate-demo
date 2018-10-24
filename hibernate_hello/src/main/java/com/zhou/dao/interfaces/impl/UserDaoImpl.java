@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zhou.dao.entity.User;
 import com.zhou.dao.interfaces.UserDao;
 import com.zhou.service.NewsPage;
+import com.zhou.service.inter.NewsPageInter;
 
 
 @Repository
@@ -44,8 +45,8 @@ public class UserDaoImpl implements UserDao
         return count;
     }
     @Override
-    public NewsPage queryForNewsPage(Integer currentPage,Integer pageSize) {
-        NewsPage<User> page = new NewsPage<User>();
+    public NewsPageInter queryForNewsPage(Integer currentPage,Integer pageSize) {
+        NewsPageInter<User> page = new NewsPage<User>();
         //总记录数
         int allRow = getAllRowCount();
         //当前页开始记录

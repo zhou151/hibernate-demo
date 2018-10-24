@@ -3,6 +3,7 @@ package com.zhou.service;
 import java.util.List;
 
 import com.zhou.dao.entity.User;
+import com.zhou.service.inter.NewsPageInter;
 /**
  * --------------------------------------
  * @author Mr_zhou 2018年8月27日 下午8:13:27
@@ -17,7 +18,7 @@ import com.zhou.dao.entity.User;
  *         totalPages:2,  -----页数量
  *         totalRecords:4 ----全部记录,总数据行数
  *-------------------------------------*/
-public class NewsPage<T>
+public class NewsPage<T> implements NewsPageInter<T>
 {
 	// 结果集
 	private List<T> list;
@@ -31,40 +32,38 @@ public class NewsPage<T>
 	// 第几页
 	private int pageNo;
 
-	/**
-	 * @return 总页数
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getTotalPages()
 	 */
+	@Override
 	public int getTotalPages()
 	{
 		return (totalRecords + pageSize - 1) / pageSize;
 	}
 
-	/**
-	 * 计算当前页开始记录
-	 * 
-	 * @param pageSize
-	 *            每页记录数
-	 * @param currentPage
-	 *            当前第几页
-	 * @return 当前页开始记录号
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#countOffset(int, int)
 	 */
+	@Override
 	public int countOffset(int currentPage, int pageSize)
 	{
 		int offset = pageSize * (currentPage - 1);
 		return offset;
 	}
 
-	/**
-	 * @return 首页
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getTopPageNo()
 	 */
+	@Override
 	public int getTopPageNo()
 	{
 		return 1;
 	}
 
-	/**
-	 * @return 上一页
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getPreviousPageNo()
 	 */
+	@Override
 	public int getPreviousPageNo()
 	{
 		if (pageNo <= 1)
@@ -74,9 +73,10 @@ public class NewsPage<T>
 		return pageNo - 1;
 	}
 
-	/**
-	 * @return 下一页
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getNextPageNo()
 	 */
+	@Override
 	public int getNextPageNo()
 	{
 		if (pageNo >= getBottomPageNo())
@@ -86,49 +86,82 @@ public class NewsPage<T>
 		return pageNo + 1;
 	}
 
-	/**
-	 * @return 尾页
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getBottomPageNo()
 	 */
+	@Override
 	public int getBottomPageNo()
 	{
 		return getTotalPages();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getList()
+	 */
+	@Override
 	public List<T> getList()
 	{
 		return list;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#setList(java.util.List)
+	 */
+	@Override
 	public void setList(List<T> list)
 	{
 		this.list = list;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getTotalRecords()
+	 */
+	@Override
 	public int getTotalRecords()
 	{
 		return totalRecords;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#setTotalRecords(int)
+	 */
+	@Override
 	public void setTotalRecords(int totalRecords)
 	{
 		this.totalRecords = totalRecords;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getPageSize()
+	 */
+	@Override
 	public int getPageSize()
 	{
 		return pageSize;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#setPageSize(int)
+	 */
+	@Override
 	public void setPageSize(int pageSize)
 	{
 		this.pageSize = pageSize;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#getPageNo()
+	 */
+	@Override
 	public int getPageNo()
 	{
 		return pageNo;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.NewsPageInter#setPageNo(int)
+	 */
+	@Override
 	public void setPageNo(int pageNo)
 	{
 		this.pageNo = pageNo;

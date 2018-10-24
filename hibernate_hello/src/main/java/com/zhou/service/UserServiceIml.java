@@ -1,15 +1,14 @@
 package com.zhou.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhou.dao.entity.User;
 import com.zhou.dao.interfaces.UserDao;
+import com.zhou.service.inter.NewsPageInter;
+import com.zhou.service.inter.UserServiceInter;
 
 @Service
-public class UserServiceIml implements UserDao
+public class UserServiceIml implements  UserServiceInter
 {
 	@Autowired
     private UserDao userDao;
@@ -17,8 +16,11 @@ public class UserServiceIml implements UserDao
 
 
 
+	/* (non-Javadoc)
+	 * @see com.zhou.service.UserServiceInter#queryForNewsPage(java.lang.Integer, java.lang.Integer)
+	 */
 	@Override
-	public NewsPage queryForNewsPage(Integer currentPage, Integer pageSize)
+	public NewsPageInter queryForNewsPage(Integer currentPage, Integer pageSize)
 	{
 		return userDao.queryForNewsPage(currentPage, pageSize);
 	}
