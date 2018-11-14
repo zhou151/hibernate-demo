@@ -3,7 +3,7 @@ package com.zhou.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhou.dao.interfaces.UserDao;
+import com.zhou.dao.UserDao;
 import com.zhou.service.inter.NewsPageInter;
 import com.zhou.service.inter.UserServiceInter;
 

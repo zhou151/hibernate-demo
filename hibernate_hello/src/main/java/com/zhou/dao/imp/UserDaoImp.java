@@ -1,4 +1,4 @@
-package com.zhou.dao.interfaces.impl;
+package com.zhou.dao.imp;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zhou.dao.UserDao;
 import com.zhou.dao.entity.User;
-import com.zhou.dao.interfaces.UserDao;
 import com.zhou.service.PageUtil;
 
 
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao
+public class UserDaoImp implements UserDao
 {
 	@Autowired
     private SessionFactory sessionFactory;
