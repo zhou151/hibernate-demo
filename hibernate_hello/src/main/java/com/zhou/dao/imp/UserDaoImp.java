@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zhou.dao.UserDao;
 import com.zhou.dao.entity.User;
-import com.zhou.service.PageUtil;
+import com.zhou.util.PageUtil;
 
 
 @Repository

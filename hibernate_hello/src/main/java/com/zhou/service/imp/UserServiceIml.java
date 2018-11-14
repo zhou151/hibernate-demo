@@ -1,14 +1,14 @@
-package com.zhou.service;
+package com.zhou.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhou.dao.UserDao;
-import com.zhou.service.inter.NewsPageInter;
-import com.zhou.service.inter.UserServiceInter;
+import com.zhou.service.UserService;
+import com.zhou.util.PageUtil;
 
 @Service
-public class UserServiceIml implements  UserServiceInter
+public class UserServiceIml implements  UserService
 {
 	@Autowired
     private UserDao userDao;

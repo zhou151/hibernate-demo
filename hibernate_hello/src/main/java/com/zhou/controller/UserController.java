@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhou.dao.entity.User;
-import com.zhou.service.PageUtil;
-import com.zhou.service.inter.UserServiceInter;
+import com.zhou.service.UserService;
+import com.zhou.util.PageUtil;
 
 @Controller
 public class UserController
 {
-	@Autowired UserServiceInter userServiceIml;
+	@Autowired UserService userServiceIml;
 	
 	
 	@ResponseBody

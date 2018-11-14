@@ -1,9 +1,6 @@
-package com.zhou.service;
+package com.zhou.util;
 
 import java.util.List;
-
-import com.zhou.dao.entity.User;
-import com.zhou.service.inter.NewsPageInter;
 /**
  * --------------------------------------
  * @author Mr_zhou 2018年8月27日 下午8:13:27
