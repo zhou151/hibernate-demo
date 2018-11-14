@@ -1,0 +1,45 @@
+hibernate结合spring笔记
+
+一  引入依赖jar(这里使用的是maven方式)
+
+二  编写 hibernate.cfg.xml(这里使用spring，所以注入容器，请见applicationContext.xml)
+
+三  编写对象关系映射配置文件(实体对应数据库表)
+	<hibernate-mapping>
+	<!-- name代表的是实体类名，table代表的是表名 -->
+	<class name="com.zhou.dao.entity.User" table="user">
+		<!-- name=id代表的是user类中属性 column=id代表的是table表中的字段 -->
+		<id name="id" column="id">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+		<!-- 其他属性使用property标签来映射 -->
+		<property name="username" column="username" type="string" length="30" not-null="true"/>
+		</class>
+	</hibernate-mapping>
+	
+四 加载步骤二的配置文件xml Configuration cfg = new Configuration().configure(); 这里使用spring，所以注入容器
+
+五 SessionFactory
+	负责维护Hibernate的二级缓存
+	一个SessionFactory实例对应一个数据库，应用从该对象中获得Session实例
+	SessionFactory是重量级的，意味着不能随意创建或销毁它的实例。如果只访问一个数据库，只需要创建一个SessionFactory实例
+	SessionFactory需要一个较大的缓存，用来存放预定义的SQL语句及实体的映射信息。另外可以配置一个缓存插件，这个插件被称之为Hibernate的二级缓存，被多线程所共享
+
+六 Session
+	Session是在Hibernate中使用最频繁的接口。也被称之为持久化管理器。它提供了和持久化有关的操作，比如添加、修改、删除、加载和查询实体对象。
+	Session 是应用程序与数据库之间交互操作的一个单线程对象，是Hibernate 运作的中心
+	所有持久化对象必须在 session 的管理下才可以进行持久化操作
+	Session 对象有一个一级缓存，显式执行 flush 之前，所有的持久化操作的数据都缓存在 session 对象处
+	持久化类与 Session 关联起来后就具有了持久化的能力  
+	Session常用的方法
+		save(obj)			session.save(new Emp("小红"))     //增加一个对象 
+		delete(obj)  		(Emp) e= (Emp)session.get(Emp.class,1);   session.delete(e);  //删除id为1的对象
+		get(Class,id)      session.get(Emp.class,1)   //得到id为1的 Emp对象  
+		update(obj) 		(Emp) e= (Emp)session.get(Emp.class,1);  e.setName("xxx");  session.update(e);
+		saveOrUpdate(obj)  保存或者修改（如果没有数据，保存数据。如果有，修改数据）
+		createQuery()      HQL语句的查询的方式
+七 Query 和 SQLQuery
+	Query q=session.createQuery("from user"); //创建的HQL查询
+	q.uniqueResult(); //查询一条数据
+	SQLQuery q= session.createSQLQuery("select * from user"); //创建的sql查询

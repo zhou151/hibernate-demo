@@ -20,7 +20,7 @@ public class UserServiceIml implements  UserServiceInter
 	 * @see com.zhou.service.UserServiceInter#queryForNewsPage(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
-	public NewsPageInter queryForNewsPage(Integer currentPage, Integer pageSize)
+	public PageUtil queryForNewsPage(Integer currentPage, Integer pageSize)
 	{
 		return userDao.queryForNewsPage(currentPage, pageSize);
 	}

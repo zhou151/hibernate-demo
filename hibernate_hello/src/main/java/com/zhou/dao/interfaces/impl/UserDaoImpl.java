@@ -1,6 +1,5 @@
 package com.zhou.dao.interfaces.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -12,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zhou.dao.entity.User;
 import com.zhou.dao.interfaces.UserDao;
-import com.zhou.service.NewsPage;
-import com.zhou.service.inter.NewsPageInter;
+import com.zhou.service.PageUtil;
 
 
 @Repository
@@ -32,6 +30,15 @@ public class UserDaoImpl implements UserDao
 	
     public List<User> queryForPage(Integer offset, Integer length) {
         Session session =getSession();
+        
+        /*三、Session常用的方法
+        save(obj)
+        delete(obj)  
+        get(Class,id)
+        update(obj)
+        saveOrUpdate(obj)  保存或者修改（如果没有数据，保存数据。如果有，修改数据）
+        createQuery()      HQL语句的查询的方式*/
+        
         Query query = session.createQuery("from User");
         query.setFirstResult(offset);
         query.setMaxResults(length);
@@ -45,8 +52,8 @@ public class UserDaoImpl implements UserDao
         return count;
     }
     @Override
-    public NewsPageInter queryForNewsPage(Integer currentPage,Integer pageSize) {
-        NewsPageInter<User> page = new NewsPage<User>();
+    public PageUtil queryForNewsPage(Integer currentPage,Integer pageSize) {
+    	PageUtil<User> page = new PageUtil<User>();
         //总记录数
         int allRow = getAllRowCount();
         //当前页开始记录

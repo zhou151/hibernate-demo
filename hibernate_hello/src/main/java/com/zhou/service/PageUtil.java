@@ -18,7 +18,7 @@ import com.zhou.service.inter.NewsPageInter;
  *         totalPages:2,  -----页数量
  *         totalRecords:4 ----全部记录,总数据行数
  *-------------------------------------*/
-public class NewsPage<T> implements NewsPageInter<T>
+public class PageUtil<T> 
 {
 	// 结果集
 	private List<T> list;
@@ -35,7 +35,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getTotalPages()
 	 */
-	@Override
 	public int getTotalPages()
 	{
 		return (totalRecords + pageSize - 1) / pageSize;
@@ -44,7 +43,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#countOffset(int, int)
 	 */
-	@Override
 	public int countOffset(int currentPage, int pageSize)
 	{
 		int offset = pageSize * (currentPage - 1);
@@ -54,7 +52,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getTopPageNo()
 	 */
-	@Override
 	public int getTopPageNo()
 	{
 		return 1;
@@ -63,7 +60,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getPreviousPageNo()
 	 */
-	@Override
 	public int getPreviousPageNo()
 	{
 		if (pageNo <= 1)
@@ -76,7 +72,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getNextPageNo()
 	 */
-	@Override
 	public int getNextPageNo()
 	{
 		if (pageNo >= getBottomPageNo())
@@ -89,7 +84,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getBottomPageNo()
 	 */
-	@Override
 	public int getBottomPageNo()
 	{
 		return getTotalPages();
@@ -98,7 +92,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getList()
 	 */
-	@Override
 	public List<T> getList()
 	{
 		return list;
@@ -107,7 +100,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#setList(java.util.List)
 	 */
-	@Override
 	public void setList(List<T> list)
 	{
 		this.list = list;
@@ -116,7 +108,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getTotalRecords()
 	 */
-	@Override
 	public int getTotalRecords()
 	{
 		return totalRecords;
@@ -125,7 +116,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#setTotalRecords(int)
 	 */
-	@Override
 	public void setTotalRecords(int totalRecords)
 	{
 		this.totalRecords = totalRecords;
@@ -134,7 +124,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getPageSize()
 	 */
-	@Override
 	public int getPageSize()
 	{
 		return pageSize;
@@ -143,7 +132,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#setPageSize(int)
 	 */
-	@Override
 	public void setPageSize(int pageSize)
 	{
 		this.pageSize = pageSize;
@@ -152,7 +140,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#getPageNo()
 	 */
-	@Override
 	public int getPageNo()
 	{
 		return pageNo;
@@ -161,7 +148,6 @@ public class NewsPage<T> implements NewsPageInter<T>
 	/* (non-Javadoc)
 	 * @see com.zhou.service.NewsPageInter#setPageNo(int)
 	 */
-	@Override
 	public void setPageNo(int pageNo)
 	{
 		this.pageNo = pageNo;

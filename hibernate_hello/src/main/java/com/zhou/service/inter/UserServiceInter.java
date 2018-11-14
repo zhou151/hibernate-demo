@@ -1,7 +1,9 @@
 package com.zhou.service.inter;
 
+import com.zhou.service.PageUtil;
+
 public interface UserServiceInter {
 
-	NewsPageInter queryForNewsPage(Integer currentPage, Integer pageSize);
+	PageUtil queryForNewsPage(Integer currentPage, Integer pageSize);
 
 }

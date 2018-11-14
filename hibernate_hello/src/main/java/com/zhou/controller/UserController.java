@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhou.dao.entity.User;
-import com.zhou.service.inter.NewsPageInter;
+import com.zhou.service.PageUtil;
 import com.zhou.service.inter.UserServiceInter;
 
 @Controller
@@ -28,9 +28,9 @@ public class UserController
 	 * @return  
 	 * TODO queryForNewsPage参数2为每页显示多少数据
 	 */
-	public  NewsPageInter<User> mvc10(@RequestParam("page") String page)
+	public  PageUtil<User> mvc10(@RequestParam("page") String page)
 	{
-		NewsPageInter<User> page01 = null;
+		PageUtil<User> page01 = null;
 		int pageSize=3;
 		if(page==null||page.equals(""))
 		{
